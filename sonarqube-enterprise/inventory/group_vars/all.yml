@@ -5,7 +5,8 @@
 sonar_install_directory: /opt/sonarqube
 
 # SonarQube version to install
-sonar_version: 9.0
+sonar_version: 9.0.1.46107
+
 db_host: 192.168.1.42
 # SonarQube base directory
 sonar_base_dir: "{{ sonar_install_directory }}/sonarqube-{{ sonar_version }}"
