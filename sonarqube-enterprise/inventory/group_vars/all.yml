@@ -7,7 +7,7 @@ sonar_install_directory: /opt/sonarqube
 # SonarQube version to install
 sonar_version: 9.0.1.46107
 
-db_host: 192.168.1.42
+db_host: localhost
 # SonarQube base directory
 sonar_base_dir: "{{ sonar_install_directory }}/sonarqube-{{ sonar_version }}"
 
@@ -81,7 +81,7 @@ sonar_db_pass: "redhat"
 # Set the sonar.jdbc.username and sonar.jdbc.password appropriately.
 #sonar_jdbc_url=jdbc:sqlserver://localhost;databaseName=sonar
 
-sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube"
+sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube?currentSchema=sonarqube"
 
 # SonarQube JDBC maximum number of active connection
 sonar_jdbc_maxactive: 60
