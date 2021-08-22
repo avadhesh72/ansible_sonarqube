@@ -7,3 +7,7 @@
   - role: pre-setup
     tags:
       - pre-setup
+
+  - role: solarq-setup
+    tags:
+      - solarq

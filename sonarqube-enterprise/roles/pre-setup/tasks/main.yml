@@ -45,3 +45,11 @@
   fail:
     msg: "JAVA is not installed or configured"
   when: not prereq_java.rc == 0
+
+- name: "Ensure required packages are installed"
+  package:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - procps
+  when: ansible_os_family == 'Debian'  
