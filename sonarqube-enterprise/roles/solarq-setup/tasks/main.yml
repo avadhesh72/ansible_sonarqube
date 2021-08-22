@@ -36,10 +36,10 @@
       group: "{{ sonar_group }}"
       copy: no
 
-  - name: "Remove SonarQube archive"
-    file:
-      path: "/tmp/{{ __sonar_archive }}"
-      state: absent
+  #- name: "Remove SonarQube archive"
+  #  file:
+  #    path: "/tmp/{{ __sonar_archive }}"
+  #    state: absent
 
   - name: "Collect the list of services to check if sonar.service exists"
     service_facts:
