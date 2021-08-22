@@ -14,7 +14,7 @@ RestartSec=10
 PIDFile={{ sonar_daemon_dir }}/SonarQube.pid
 User={{ sonar_user }}
 Group={{ sonar_group }}
-LimitNOFILE={{ sonar_limitnofile }}
+LimitNOFILE={{ ulimit_n }}
 
 [Install]
 WantedBy=multi-user.target
