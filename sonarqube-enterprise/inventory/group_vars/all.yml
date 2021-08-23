@@ -153,7 +153,7 @@ sonar_ajp_port: -1
 #    http://docs.oracle.com/javase/8/docs/technotes/guides/vm/server-class.html
 #
 # sonar_ce_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
-sonar_ce_java_opts: ""
+sonar_ce_java_opts: "Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError"
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_ce_java_additional_opts: ""
@@ -180,7 +180,7 @@ sonar_ce_worker_count: 1
 #    http://docs.oracle.com/javase/8/docs/technotes/guides/vm/server-class.html
 #
 # sonar_search_java_opts: "-Xmx1G -Xms1G -Xss256k -Djava.net.preferIPv4Stack=true -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+HeapDumpOnOutOfMemoryError"
-sonar_search_java_opts: ""
+sonar_search_java_opts: "-Xmx512m -Xms512m -XX:MaxDirectMemorySizez=256m -XX:+HeapDumpOnOutOfMemoryError"
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_search_java_additional_opts: "-Dbootstrap.system_call_filter=false"
@@ -192,7 +192,7 @@ sonar_search_port: 9001
 # Elasticsearch host. The search server will bind this address and the search client will connect to it.
 # Default is 127.0.0.1.
 # As a security precaution, should NOT be set to a publicly available address.
-sonar_search_host: 127.0.0.1
+sonar_search_host: localhost
 
 
 #--------------------------------------------------------------------------------------------------
