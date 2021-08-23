@@ -81,8 +81,8 @@ sonar_db_pass: "redhat"
 # Set the sonar.jdbc.username and sonar.jdbc.password appropriately.
 #sonar_jdbc_url=jdbc:sqlserver://localhost;databaseName=sonar
 
-sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube?currentSchema=sonarqube"
-
+#sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube?currentSchema=sonarqube"
+sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube"
 # SonarQube JDBC maximum number of active connection
 sonar_jdbc_maxactive: 60
 
