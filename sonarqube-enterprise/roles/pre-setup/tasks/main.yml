@@ -59,3 +59,10 @@
     name:
       - unzip
     state: latest
+- name: Set sysctl values
+  - ansible.posix.sysctl:
+    name: vm.max_map_count
+    value: '524288'
+    sysctl_set: yes
+    state: present
+    reload: yes
