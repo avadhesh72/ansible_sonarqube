@@ -107,7 +107,7 @@ sonar_jdbc_time_between_eviction_runs_millis: 30000
 
 # SonarQube Web Server configuration
 # sonar_web_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
-sonar_web_java_opts: ""
+sonar_web_java_opts: "-Xmx1024m -Xms512m -XX:+HeapDumpOnOutOfMemoryError"
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_web_java_additional_opts: ""
@@ -183,7 +183,7 @@ sonar_ce_worker_count: 1
 sonar_search_java_opts: ""
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
-sonar_search_java_additional_opts: ""
+sonar_search_java_additional_opts: "-Dbootstrap.system_call_filter=false"
 
 # Elasticsearch port. Default is 9001. Use 0 to get a free port.
 # As a security precaution, should be blocked by a firewall and not exposed to the Internet.
