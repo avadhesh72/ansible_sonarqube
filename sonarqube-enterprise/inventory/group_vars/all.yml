@@ -107,7 +107,7 @@ sonar_jdbc_time_between_eviction_runs_millis: 30000
 
 # SonarQube Web Server configuration
 # sonar_web_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
-sonar_web_java_opts: "-Xmx512m -Xms512m -XX:+HeapDumpOnOutOfMemoryError"
+sonar_web_java_opts: "-Xmx512m -Xms256m -XX:+HeapDumpOnOutOfMemoryError"
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_web_java_additional_opts: ""
@@ -153,7 +153,7 @@ sonar_ajp_port: -1
 #    http://docs.oracle.com/javase/8/docs/technotes/guides/vm/server-class.html
 #
 # sonar_ce_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
-sonar_ce_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError"
+sonar_ce_java_opts: "-Xmx512m -Xms256m -XX:+HeapDumpOnOutOfMemoryError"
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_ce_java_additional_opts: ""
