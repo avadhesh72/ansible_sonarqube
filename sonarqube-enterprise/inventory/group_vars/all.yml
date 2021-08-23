@@ -7,7 +7,7 @@ sonar_install_directory: /opt/sonarqube
 # SonarQube version to install
 sonar_version: 9.0.1.46107
 
-db_host: 192.168.1.42
+db_host: localhost
 
 # SonarQube base directory
 sonar_base_dir: "{{ sonar_install_directory }}/sonarqube-{{ sonar_version }}"
@@ -49,8 +49,8 @@ sonar_db_embedded: false
 #sonar_db_embedded_port: 9092
 
 # SonarQube JDBC Credentials
-sonar_db_user: "sonarqube"
-sonar_db_pass: "sonarqube"
+sonar_db_user: sonar
+sonar_db_pass: redhat
 
 # SonarQube JDBC URL
 # examples (from default sonar.properties file):
@@ -83,7 +83,7 @@ sonar_db_pass: "sonarqube"
 #sonar_jdbc_url=jdbc:sqlserver://localhost;databaseName=sonar
 
 #sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube?currentSchema=sonarqube"
-sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}:5432/sonarqube"
+sonar_jdbc_url: "jdbc:postgresql://{{ db_host }}/sonarqube"
 # SonarQube JDBC maximum number of active connection
 sonar_jdbc_maxactive: 60
 
@@ -107,15 +107,15 @@ sonar_jdbc_time_between_eviction_runs_millis: 30000
 
 # SonarQube Web Server configuration
 # sonar_web_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
-sonar_web_java_opts: "-Xmx512m -Xms512m -XX:+HeapDumpOnOutOfMemoryError"
+sonar_web_java_opts: ""
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
-sonar_web_java_additional_opts: ""
+sonar_web_java_additional_opts: "-server"
 
 # Binding IP address. For servers with more than one IP address, this property specifies which
 # address will be used for listening on the specified ports.
 # By default, ports will be used on all IP addresses associated with the server.
-sonar_web_host: 192.168.1.42
+sonar_web_host: 0.0.0.0
 
 # Web context. When set, it must start with forward slash (for example /sonarqube).
 # The default value is root context (empty value).
@@ -153,7 +153,7 @@ sonar_ajp_port: -1
 #    http://docs.oracle.com/javase/8/docs/technotes/guides/vm/server-class.html
 #
 # sonar_ce_java_opts: "-Xmx512m -Xms128m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true"
-sonar_ce_java_opts: "-Xmx256m -Xms256m -XX:+HeapDumpOnOutOfMemoryError"
+sonar_ce_java_opts: ""
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_ce_java_additional_opts: ""
@@ -180,7 +180,7 @@ sonar_ce_worker_count: 1
 #    http://docs.oracle.com/javase/8/docs/technotes/guides/vm/server-class.html
 #
 # sonar_search_java_opts: "-Xmx1G -Xms1G -Xss256k -Djava.net.preferIPv4Stack=true -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+HeapDumpOnOutOfMemoryError"
-sonar_search_java_opts: "-Xmx512m -Xms256m -XX:MaxDirectMemorySize=256m -XX:+HeapDumpOnOutOfMemoryError"
+sonar_search_java_opts: "-Xmx512m -Xm512m  -XX:+HeapDumpOnOutOfMemoryError"
 
 # Same as previous property, but allows to not repeat all other settings like -Xmx
 sonar_search_java_additional_opts: "-Dbootstrap.system_call_filter=false"
@@ -224,7 +224,7 @@ http_proxy_password: ""
 # LOGGING
 
 # Level of logs. Supported values are INFO(default), DEBUG and TRACE (DEBUG + SQL + ES requests)
-sonar_log_level: "DEBUG"
+sonar_log_level: "INFO"
 
 # Rolling policy of log files
 #    - based on time if value starts with "time:", for example by day ("time:yyyy-MM-dd")
