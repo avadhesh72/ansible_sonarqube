@@ -1,12 +1,12 @@
 ---
 # tasks file for ansible-role-sonarqube/
 
-- name: "Create SonarQube system group"
+- name: "Create {{ sonar_group }} system group"
   group:
     name: "{{ sonar_group }}"
     state: present
 
-- name: "Create SonarQube system user"
+- name: "Create {{ sonar_user }} system user"
   user:
     name: "{{ sonar_user }}"
     group: "{{ sonar_group }}"
@@ -76,18 +76,13 @@
     state: present
     reload: yes
 
-- name: Add nofile limit for {{sonar_user}} user in /etc/security/limits.conf
+- name: Add nofile & nproc limit for {{sonar_user}} user in /etc/security/limits.conf
   lineinfile:
     path: '/etc/security/limits.conf'
     regexp: '^{{sonar_user}}\s+'
-    line: '{{sonar_user}}  -  nofile  131072'
+    line: '{{item}}'
     state: present
-    insertafter: EOF
-
-- name: Add nproc limit for {{sonar_user}} user in /etc/security/limits.conf
-  lineinfile:
-    path: '/etc/security/limits.conf'
-    regexp: '^{{sonar_user}}\s+'
-    line: '{{sonar_user}}  -  nproc  8192'
-    state: present
-    insertafter: '{{sonar_user}\s+-\s+nofile\s+[0-9]+$}'
+    insertbefore: '^#\sEnd'
+  with_items:
+    - "{{sonar_user}}  -  nofile  131072"
+    - "{{sonar_user}}  -  nproc  8192"
