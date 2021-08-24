@@ -1,4 +1,4 @@
 ---
 
 - name: check sonarqube post stat
-  command: ss -tlupn -o state all src 0.0.0.0 sport 9000|egrep ^tcp
+  command: ss -tlupn -o state all sport 9000|egrep ^tcp
