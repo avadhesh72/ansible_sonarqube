@@ -11,3 +11,7 @@
   - role: solarq-setup
     tags:
       - solarq
+
+  - role: post-setup
+    tags:
+      - post-setup
