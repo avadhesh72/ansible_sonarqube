@@ -21,12 +21,23 @@
   register: sonar_binary_stat
 
 - block:
+  - name: Get stat of /tmp/{{ __sonar_archive }}
+    stat:
+      path: "/tmp/{{ __sonar_archive }}"
+    register: _archive_path
+
   - name: "Download SonarQube binaries"
     get_url:
       url: "{{ sonar_download_url }}"
       dest: "/tmp/{{ __sonar_archive }}"
     retries: 5
     delay: 10
+    when: not _archive_path.stat.path.exists
+
+  - name: Get stat of {{ sonar_install_directory }}
+    stat:
+      path: "{{ sonar_install_directory }}"
+    register: _sonar_dir
 
   - name: "Expand SonarQube binaries"
     unarchive:
@@ -35,8 +46,8 @@
       owner: "{{ sonar_user }}"
       group: "{{ sonar_group }}"
       copy: no
-
-
+    when: not _sonar_dir.stat.path.exists
+    
 #  - name: "Remove SonarQube archive"
 #    file:
 #      path: "/tmp/{{ __sonar_archive }}"
