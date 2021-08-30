@@ -61,7 +61,7 @@
     state: latest
 
 - name: Set sysctl vm.max_map_count value
-  ansible.posix.sysctl:
+  sysctl:
     name: vm.max_map_count
     value: '524288'
     sysctl_set: yes
@@ -69,7 +69,7 @@
     reload: yes
 
 - name: Set sysctl fs.file-max value
-  ansible.posix.sysctl:
+  sysctl:
     name: fs.file-max
     value: '131072'
     sysctl_set: yes
@@ -86,3 +86,6 @@
   with_items:
     - "{{sonar_user}}  -  nofile  131072"
     - "{{sonar_user}}  -  nproc  8192"
+
+- name: MS Sql tool install
+  include_tasks: mssql.yml 

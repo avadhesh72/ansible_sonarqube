@@ -1,0 +1,17 @@
+---
+- name: Add mssql repor  signing key
+  apt_key: 
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+
+- name: Download mssql repo files
+  get_url:
+    url: https://packages.microsoft.com/config/ubuntu/20.04/prod.list
+    dest: /etc/apt/sources.list.d/msprod.list
+    mode: '0644'
+- name: "Install mssql tools"
+  apt:
+    name:
+      - mssql-tools 
+      - unixodbc-dev
+    state: latest
