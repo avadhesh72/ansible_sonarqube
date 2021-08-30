@@ -76,21 +76,21 @@
     state: present
     reload: yes
 
-- name: Check {{sonar_user}} entry in limits.conf
-  shell: egrep "^{{sonar_user}}" /etc/security/limits.conf
-  register: _limits_setup
-  ignore_errors: true
-
-- name: Add nofile & nproc limit for {{sonar_user}} user in /etc/security/limits.conf
+- name: Add nofile limit for {{sonar_user}} user in /etc/security/limits.conf
   lineinfile:
     path: '/etc/security/limits.conf'
-    line: '{{item}}'
+    regexp: '{{sonar_user}}\s+-\s+nofile'
+    line: "{{sonar_user}}  -  nofile  131072"
     state: present
     insertbefore: '^#\sEnd'
-  with_items:
-    - "{{sonar_user}}  -  nofile  131072"
-    - "{{sonar_user}}  -  nproc  8192"
-  when: _limits_setup.rc != 0
+  
+- name: Add nproc limit for {{sonar_user}} user in /etc/security/limits.conf
+  lineinfile:
+    path: '/etc/security/limits.conf'
+    regexp: '{{sonar_user}}\s+-\s+nproc'
+    line: "{{sonar_user}}  -  nproc  8192"
+    state: present
+    insertbefore: '^#\sEnd'
 
 - name: MS Sql tool install
   include_tasks: mssql.yml 
