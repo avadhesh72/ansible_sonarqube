@@ -1,4 +1,8 @@
 ---
 
 - name: check sonarqube post stat1
-  command: ss -tlupn -o state all sport 9000|egrep ^tcp
+  shell: ss -tlupn -o state all sport 9000|egrep ^tcp
+  register: _post_state
+  until: _post_state.rc == 0
+  retries: 5
+  delay: 10
