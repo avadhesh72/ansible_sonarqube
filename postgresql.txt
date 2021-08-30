@@ -1,0 +1,14 @@
+#Postgresql setup details
+systemctl enable postgresql
+systemctl start  postgresql
+
+passwd postgres
+redhat
+su - postgres
+create user sonar
+ALTER USER sonar WITH ENCRYPTED PASSWORD 'redhat';
+CREATE DATABASE sonarqube OWNER sonar;
+GRANT ALL PRIVILEGES ON DATABASE sonarqube to sonar;
+\q
+exit
+ 
