@@ -13,5 +13,5 @@
 
 - name: "Install mssql tools"
   shell: |
-      apt-get update
-      ACCEPT_EULA=Y apt-get install mssql-tools -y
+      apt update -y
+      ACCEPT_EULA=Y apt-get install mssql-tools  msodbcsql17 -y
